@@ -4,3 +4,4 @@ Expand-Archive C:\servertools.zip C:\
 Remove-Item C:\servertools.zip
 if(test-path C:\servertools){remove-item C:\servertools -Recurse -Force -Confirm:$FALSE}
 Rename-Item C:\servertools-main C:\servertools
+if(test-path C:\download.ps1){remove-item -Path C:\download.ps1}
