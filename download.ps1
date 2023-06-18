@@ -1,7 +1,20 @@
-if(test-path C:\scripts\servertools-main){Remove-Item C:\scripts\servertools-main -Recurse -Force -Confirm:$FALSE };if(test-path C:\scripts\servertools.zip){Remove-Item C:\scripts\servertools.zip -Recurse -Force -Confirm:$FALSE}
-Invoke-WebRequest -Uri 'https://github.com/cordfox/servertools/archive/refs/heads/main.zip' -OutFile "C:\scripts\servertools.zip" 
-Expand-Archive C:\scripts\servertools.zip C:\scripts
-Remove-Item C:\scripts\servertools.zip
-if(test-path C:\scripts\servertools){remove-item C:\scripts\servertools -Recurse -Force -Confirm:$FALSE}
-Rename-Item C:\scripts\servertools-main C:\scripts\servertools
-if(test-path C:\scripts\download.ps1){remove-item -Path C:\scripts\download.ps1}
+$sourceFiles = "https://github.com/cordfox/servertools/archive/refs/heads/main.zip"
+$downloadName = "servertools.zip"
+$scriptsFolder = "C:\Program Files\Zabbix Agent 2\scripts"
+$repositoryFolderEW = "servertools-main" #this is the name 
+$repositoryFolderYeah = "servertools"
+
+#Clean some house
+if(test-path $scriptsFolder\$repositoryFolderEW){Remove-Item $scriptsFolder\$repositoryFolderEW -Recurse -Force -Confirm:$FALSE }
+if(test-path $scriptsFolder\$repositoryFolderYeah){Remove-Item $scriptsFolder\$repositoryFolderYeah -Recurse -Force -Confirm:$FALSE }
+if(test-path $scriptsFolder\$downloadName){Remove-Item $scriptsFolder\$downloadName -Recurse -Force -Confirm:$FALSE}
+
+#download the files from github
+if(!(test-path $scriptsFolder)){New-Item -ItemType Directory $scriptsFolder -Force -Confirm:$FALSE}
+Invoke-WebRequest -Uri $sourceFiles -OutFile $scriptsFolder\$downloadName
+Expand-Archive $scriptsFolder\$downloadName $scriptsFolder
+Rename-Item $scriptsFolder\$repositoryFolderEW $scriptsFolder\$repositoryFolderYeah
+
+#clean house again but leave the goods
+if(test-path $scriptsFolder\$repositoryFolderEW){Remove-Item $scriptsFolder\$repositoryFolderEW -Recurse -Force -Confirm:$FALSE }
+if(test-path $scriptsFolder\$downloadName){Remove-Item $scriptsFolder\$downloadName -Recurse -Force -Confirm:$FALSE}
