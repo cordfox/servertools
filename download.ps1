@@ -1,4 +1,4 @@
-#updated comments again!
+#updated comments back.
 
 $sourceFiles = "https://github.com/cordfox/servertools/archive/refs/heads/main.zip"
 $downloadName = "servertools.zip"
