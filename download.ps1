@@ -1,3 +1,5 @@
+#updated comments!
+
 $sourceFiles = "https://github.com/cordfox/servertools/archive/refs/heads/main.zip"
 $downloadName = "servertools.zip"
 $scriptsFolder = "C:\Program Files\Zabbix Agent 2\scripts"
