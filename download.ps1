@@ -5,6 +5,7 @@ $downloadName = "servertools.zip"
 $scriptsFolder = "C:\Program Files\Zabbix Agent 2\scripts"
 $repositoryFolderEW = "servertools-main"
 $repositoryFolderYeah = "servertools"
+$downloadScript = "$scriptsFolder\$repositoryFolderYeah\download.ps1"
 
 #Clean some house
 if(test-path $scriptsFolder\$repositoryFolderEW){Remove-Item $scriptsFolder\$repositoryFolderEW -Recurse -Force -Confirm:$FALSE }
@@ -18,5 +19,6 @@ Expand-Archive $scriptsFolder\$downloadName $scriptsFolder
 Rename-Item $scriptsFolder\$repositoryFolderEW $scriptsFolder\$repositoryFolderYeah
 
 #clean house again but leave the goods
+copy -Path $downloadScript -Destination $scriptsFolder
 if(test-path $scriptsFolder\$repositoryFolderEW){Remove-Item $scriptsFolder\$repositoryFolderEW -Recurse -Force -Confirm:$FALSE }
 if(test-path $scriptsFolder\$downloadName){Remove-Item $scriptsFolder\$downloadName -Recurse -Force -Confirm:$FALSE}
