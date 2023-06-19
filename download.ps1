@@ -1,9 +1,9 @@
-#updated comments back.
+#This file will download stuff from github
 
 $sourceFiles = "https://github.com/cordfox/servertools/archive/refs/heads/main.zip"
 $downloadName = "servertools.zip"
 $scriptsFolder = "C:\Program Files\Zabbix Agent 2\scripts"
-$repositoryFolderEW = "servertools-main" #this is the name 
+$repositoryFolderEW = "servertools-main"
 $repositoryFolderYeah = "servertools"
 
 #Clean some house
